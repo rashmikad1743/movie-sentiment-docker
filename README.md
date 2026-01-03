@@ -1,52 +1,59 @@
-# 🎯 Sentiment Analysis API using FastAPI & Machine Learning
+# 🎯 Sentiment Analysis API using FastAPI & Machine Learning (Dockerized)
 
-This project performs **sentiment analysis** on text (movie reviews) and exposes a REST API using **FastAPI**.  
-It predicts whether a given text is **Positive** or **Negative**, along with a **confidence score**.
+A **Machine Learning–powered Sentiment Analysis REST API** built using **FastAPI** and **Docker**.  
+The API analyzes **movie reviews** and predicts whether the sentiment is **Positive** or **Negative**, along with a **confidence score**.
 
 ---
-## 🧾 Project Overview
 
-| Feature                     | Details                                                                 |
-|----------------------------|--------------------------------------------------------------------------|
-| Project Name               | Sentiment Analysis API                                                    |
-| Problem Type               | Binary Text Classification                                               |
-| Dataset                    | IMDB Movie Reviews (50,000 labeled reviews)                              |
-| Algorithm                  | TF-IDF + Logistic Regression                                             |
-| Model Save Format          | Pickle (`.pkl`)                                                           |
-| Deployment Framework       | FastAPI + Uvicorn                                                        |
-| Input                      | Text (movie reviews)                                                     |
-| Output                     | Sentiment (Positive / Negative) + Confidence Score                       |
-| Accuracy Achieved          | ~90% Test Accuracy                                                        |
+## 📌 Project Overview
 
+| Feature | Details |
+|------|--------|
+| **Project Name** | Sentiment Analysis API |
+| **Problem Type** | Binary Text Classification |
+| **Dataset** | IMDB Movie Reviews (50,000 labeled reviews) |
+| **ML Algorithm** | TF-IDF + Logistic Regression |
+| **Model Format** | Pickle (`.pkl`) |
+| **Backend Framework** | FastAPI |
+| **Server** | Uvicorn |
+| **Deployment** | Docker |
+| **Input** | Text (Movie Review) |
+| **Output** | Sentiment (Positive / Negative) + Confidence |
+| **Accuracy** | ~90% on Test Data |
 
-## 📌 Features
+---
 
-- ✔️ Train ML model on IMDB Movie Reviews dataset  
-- ✔️ Text vectorization using **TF–IDF**
-- ✔️ Classification model using **Logistic Regression**
-- ✔️ Model saved as **pickle (.pkl)** file
-- ✔️ FastAPI endpoint for real-time predictions
-- ✔️ Swagger UI for API testing (`/docs`)
-- ✔️ Handles confidence score using `predict_proba()`
+## 🚀 Features
+
+- ✅ Trained on IMDB Movie Reviews dataset
+- ✅ TF-IDF text vectorization
+- ✅ Logistic Regression classification
+- ✅ Model persistence using Pickle
+- ✅ FastAPI for real-time inference
+- ✅ Swagger UI for API testing
+- ✅ Confidence score using `predict_proba()`
+- ✅ Dockerized for easy deployment
 
 ---
 
 ## 🧠 Tech Stack
 
 | Layer | Technology |
-|------|-----------|
+|----|-----------|
 | Language | Python |
-| ML Libraries | scikit-learn, pandas, pickle |
-| Model | TF-IDF + Logistic Regression |
-| Serving | FastAPI |
+| ML | scikit-learn, pandas |
+| NLP | TF-IDF |
+| Model | Logistic Regression |
+| API | FastAPI |
 | Server | Uvicorn |
-| Evaluation | Accuracy, Precision, Recall, F1 Score |
+| Containerization | Docker |
+| Evaluation | Accuracy, Precision, Recall, F1 |
 
 ---
 
 ## 📁 Project Structure
 
-Movie Review Recommendation/
+movie-sentiment-docker/
 │
 ├── data/
 │ └── IMDB Dataset.csv
@@ -54,55 +61,81 @@ Movie Review Recommendation/
 ├── models/
 │ └── sentiment_model.pkl
 │
-├── model_training.py # Training script (TF-IDF + Logistic Regression)
-├── main.py # FastAPI app (inference service)
+├── model_training.py # Model training script
+├── main.py # FastAPI inference service
 ├── requirements.txt
+├── Dockerfile
 └── README.md
 
-### 1️⃣ Activate virtual environment
+yaml
+Copy code
+
+---
+
+## ⚙️ Local Installation & Setup
+
+### 1️⃣ Create & Activate Virtual Environment
 ```bash
+python -m venv venv
 venv\Scripts\activate
-2️⃣ Install requirements
+2️⃣ Install Dependencies
 bash
 Copy code
 pip install -r requirements.txt
-3️⃣ Train the model
+🧪 Model Training
+3️⃣ Train the Model
 bash
 Copy code
 python model_training.py --data "data/IMDB Dataset.csv"
-4️⃣ Output example
+🔍 Training Output Example
 yaml
 Copy code
 Train Accuracy : 0.9304
 Test Accuracy  : 0.8999
 F1 Score       : 0.9008
-The trained model is saved in:
+📁 Trained model saved at:
 
 bash
 Copy code
 models/sentiment_model.pkl
-🧪 Running API (FastAPI)
-1️⃣ Start server
+🧪 Running the API (Without Docker)
+1️⃣ Start FastAPI Server
 bash
 Copy code
 uvicorn main:app --reload
-2️⃣ Open in browser
+2️⃣ Open in Browser
 Swagger UI → http://127.0.0.1:8000/docs
 
-FastAPI root → http://127.0.0.1:8000
+API Root → http://127.0.0.1:8000
 
-📮 API Usage
-Endpoint
+🐳 Docker Setup & Usage
+1️⃣ Build Docker Image
 bash
 Copy code
+docker build -t sentiment-analysis-api .
+2️⃣ Run Docker Container
+bash
+Copy code
+docker run -p 8000:8000 sentiment-analysis-api
+3️⃣ Access API
+Swagger UI → http://localhost:8000/docs
+
+API Root → http://localhost:8000
+
+✔️ No Python or dependencies needed locally.
+
+📮 API Usage
+🔹 Endpoint
+http
+Copy code
 POST /predict
-Request (JSON)
+🔹 Request Body (JSON)
 json
 Copy code
 {
   "text": "This movie was absolutely amazing!"
 }
-Response (JSON)
+🔹 Response (JSON)
 json
 Copy code
 {
@@ -118,87 +151,92 @@ Recall
 
 F1 Score
 
-Train vs Test evaluation (to check overfitting)
+Train vs Test evaluation
 
 Example:
-
 yaml
 Copy code
 Train Accuracy : 93.04%
 Test Accuracy  : 89.99%
-Since the gap is small (~3%), the model is not overfitting.
+✔️ Small gap indicates good generalization (no overfitting).
 
 🔍 How It Works
 1️⃣ Preprocessing
 Convert text to lowercase
 
-Stopwords removal
+Remove stopwords
 
 TF-IDF feature extraction
 
 2️⃣ Model
-Logistic Regression with:
+Logistic Regression
 
-max_iter=1000
+max_iter = 1000
 
-ngram_range=(1,2)
+ngram_range = (1,2)
 
-max_features=20000
+max_features = 20000
 
 3️⃣ Inference
 Load .pkl model
 
-Predict class
+Predict sentiment
 
-Return class + confidence
+Return sentiment + confidence
 
 📚 Concepts Used
 Logistic Regression
 
-TF-IDF vectorization
+TF-IDF Vectorization
 
 Binary Classification
 
 Train-Test Split
 
-Cross-Validation (optional)
+Evaluation Metrics
 
-FastAPI & Pydantic schema
+REST APIs
 
-👨‍💻 Sample Code Snippet (FastAPI)
+FastAPI
+
+Docker
+
+🧑‍💻 Sample FastAPI Code
 python
 Copy code
 from fastapi import FastAPI
 import pickle
 
 app = FastAPI()
+
 model = pickle.load(open("models/sentiment_model.pkl", "rb"))
 
 @app.post("/predict")
 def predict(text: str):
     prediction = model.predict([text])[0]
-    return {"sentiment": prediction}
+    confidence = model.predict_proba([text]).max()
+    return {
+        "sentiment": prediction,
+        "confidence": round(confidence, 4)
+    }
 📝 Future Improvements
-Neutral sentiment class (Softmax model)
+Neutral sentiment class
 
 Streamlit / React frontend
 
-Use pretrained embeddings (BERT, RoBERTa)
+Pretrained models (BERT, RoBERTa)
 
-Deploy on AWS / Render / Railway
+Cloud deployment (AWS / Render / Railway)
 
-Database logging of predictions
+Database logging
 
-Use spaCy / NLTK for better preprocessing
+Advanced NLP preprocessing
 
 🤝 Contributing
-PRs are welcome!
-Feel free to open issues or suggest new features.
+Contributions are welcome!
+Feel free to open issues or submit pull requests.
 
 🧑‍💼 Author
-Your Rashmika Makwana
-
-GitHub: rashmikad1743
-
+Rashmika Makwana
+GitHub: https://github.com/rashmikad1743
 Email: rashmikad1743@email.com
-
