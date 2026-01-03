@@ -237,27 +237,7 @@ The model is evaluated using multiple metrics to ensure reliability:
 
 ---
 
-## 🧪 Sample FastAPI Code
-```python
-from fastapi import FastAPI
-import pickle
 
-app = FastAPI()
-
-# Load trained model
-model = pickle.load(open("models/sentiment_model.pkl", "rb"))
-
-@app.post("/predict")
-def predict(text: str):
-    # Make prediction
-    pred = model.predict([text])[0]
-    confidence = model.predict_proba([text]).max()
-    
-    return {
-        "sentiment": pred,
-        "confidence": round(confidence, 4)
-    }
-```
 
 ---
 
@@ -313,4 +293,5 @@ If you found this project helpful, please give it a ⭐ on GitHub!
   <p>Made with ❤️ and Python</p>
   <p>© 2026 Rashmika Makwana</p>
 </div>
+
 
