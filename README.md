@@ -37,32 +37,29 @@ A production-ready sentiment analysis API built with FastAPI and scikit-learn fo
 - 📝 **Interactive Docs**: Auto-generated Swagger UI documentation
 
 ---
-
 ## 📁 Project Structure
 ```
 movie-sentiment-docker/
 │
-├── 📂 data/
-│   └── IMDB Dataset.csv          # Training dataset
+├── 📂 __pycache__/               # Python cache files
 │
-├── 📂 models/
-│   └── sentiment_model.pkl       # Trained model (generated after training)
-│
-├── 📂 app/
+├── 📂 backend/                   # Backend application code
 │   ├── __init__.py
+│   ├── main.py                   # FastAPI application entry point
 │   ├── model.py                  # Model loading and prediction logic
 │   ├── preprocessing.py          # Text preprocessing utilities
 │   └── schemas.py                # Pydantic models for request/response
 │
-├── main.py                       # FastAPI application entry point
-├── model_training.py             # Model training script
-├── requirements.txt              # Python dependencies
-├── Dockerfile                    # Docker configuration
-├── .dockerignore                 # Docker ignore file
-├── .gitignore                    # Git ignore file
-└── README.md                     # Project documentation
+├── 📂 data/                      # Dataset directory
+│   └── IMDB Dataset.csv          # Training dataset
+│
+├── 📂 venv/                      # Virtual environment (not in git)
+│
+├── README.md                     # Project documentation
+├── docker-compose.yml            # Docker Compose configuration
+├── docker-compose.yml.save.1     # Docker Compose backup
+└── model_training.py             # Model training script
 ```
-
 ### 📝 File Descriptions
 
 | File/Folder | Description |
@@ -293,5 +290,6 @@ If you found this project helpful, please give it a ⭐ on GitHub!
   <p>Made with ❤️ and Python</p>
   <p>© 2026 Rashmika Makwana</p>
 </div>
+
 
 
