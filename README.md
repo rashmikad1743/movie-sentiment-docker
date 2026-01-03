@@ -311,5 +311,6 @@ If you found this project helpful, please give it a ⭐ on GitHub!
 
 <div align="center">
   <p>Made with ❤️ and Python</p>
-  <p>© 2024 Rashmika Makwana</p>
+  <p>© 2026 Rashmika Makwana</p>
 </div>
+
