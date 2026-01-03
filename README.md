@@ -64,14 +64,13 @@ movie-sentiment-docker/
 
 | File/Folder | Description |
 |-------------|-------------|
+| `__pycache__/` | Python bytecode cache directory |
+| `backend/` | Core FastAPI application and business logic |
 | `data/` | Contains the IMDB dataset for training |
-| `models/` | Stores the trained model pickle file |
-| `app/` | Core application logic and utilities |
-| `main.py` | FastAPI application with API endpoints |
-| `model_training.py` | Script to train and evaluate the model |
-| `requirements.txt` | List of all Python dependencies |
-| `Dockerfile` | Instructions for building Docker image |
+| `venv/` | Python virtual environment (excluded from git) |
 | `README.md` | Project documentation (this file) |
+| `docker-compose.yml` | Multi-container Docker configuration |
+| `model_training.py` | Script to train and evaluate the model |
 
 ---
 
@@ -290,6 +289,7 @@ If you found this project helpful, please give it a ⭐ on GitHub!
   <p>Made with ❤️ and Python</p>
   <p>© 2026 Rashmika Makwana</p>
 </div>
+
 
 
 
